@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Panel admina | KGW Jezierzany</title>
+  <link rel="stylesheet" href="public/style.css">
+  <script src="index.js" defer></script>
+</head>
+<body>
+<header class="site-header">
+  <div class="brand">
+    <img src="public/zdjęcia/logo1.png" alt="Panel administracyjny KGW" class="logo">
+    <div>
+      <h1>KGW Jezierzany</h1>
+      <p>Panel admina - obsluga deklaracji wplat</p>
+    </div>
+  </div>
+</header>
+<nav>
+  <ul>
+    <li><a href="index.html">Strona glowna</a></li>
+    <li><a href="about.html">O nas</a></li>
+    <li><a href="recent.html">Aktualnosci</a></li>
+    <li><a href="work.html">Dzialalnosc</a></li>
+    <li><a href="contact.html">Wplaty i kontakt</a></li>
+    <li><a class="active" href="/admin">Panel admina</a></li>
+  </ul>
+</nav>
+
+<section class="hero" style="--hero-image: url('public/zdjęcia/DSCF2930.JPG');">
+  <div class="panel">
+    <h1>Panel administracyjny</h1>
+    <p>
+      Tu sprawdzisz deklaracje wplat przeslane przez formularz kontaktowy i oznaczysz status
+      obslugi kazdego zgloszenia.
+    </p>
+  </div>
+</section>
+
+<main class="main-container">
+  <section class="donation-wrapper">
+    <h2>Dodaj wydarzenie lub aktualnosc</h2>
+    <form id="adminPostForm" class="donation-grid" novalidate>
+      <div class="form-row">
+        <label for="postType">Typ wpisu *</label>
+        <select id="postType" required>
+          <option value="">Wybierz typ</option>
+          <option value="wydarzenie">Wydarzenie</option>
+          <option value="aktualnosc">Aktualnosc</option>
+        </select>
+        <p class="form-error" data-error-for="postType"></p>
+      </div>
+
+      <div class="form-row">
+        <label for="postDate">Data *</label>
+        <input id="postDate" type="date" required>
+        <p class="form-error" data-error-for="postDate"></p>
+      </div>
+
+      <div class="form-row full">
+        <label for="postTitle">Tytul *</label>
+        <input id="postTitle" type="text" placeholder="Np. Warsztaty wielkanocne" required>
+        <p class="form-error" data-error-for="postTitle"></p>
+      </div>
+
+      <div class="form-row full">
+        <label for="postDescription">Opis *</label>
+        <textarea id="postDescription" rows="4" placeholder="Napisz szczegoly wydarzenia lub aktualnosci." required></textarea>
+        <p class="form-error" data-error-for="postDescription"></p>
+      </div>
+
+      <div class="form-row full">
+        <label for="postImage">Zdjecie (opcjonalnie)</label>
+        <input id="postImage" type="text" placeholder="public/zdjęcia/DSCF2703.jpg">
+        <p class="form-help">Podaj sciezke do zdjecia z folderu public.</p>
+        <p class="form-error" data-error-for="postImage"></p>
+      </div>
+
+      <div class="form-row full">
+        <button class="btn btn-primary" type="submit">Opublikuj wpis</button>
+      </div>
+      <div id="adminPostMessage" class="form-message" hidden></div>
+    </form>
+  </section>
+
+  <section class="admin-table-wrap">
+    <h2>Opublikowane wpisy</h2>
+    <div id="adminPostsList" class="admin-post-list"></div>
+  </section>
+
+  <section class="admin-grid" id="adminStats">
+    <article class="stat-card">
+      <h3>Liczba deklaracji</h3>
+      <p id="statCount">0</p>
+    </article>
+    <article class="stat-card">
+      <h3>Suma deklaracji</h3>
+      <p id="statTotal">0 PLN</p>
+    </article>
+    <article class="stat-card">
+      <h3>Nowe zgloszenia</h3>
+      <p id="statNew">0</p>
+    </article>
+  </section>
+
+  <section class="admin-table-wrap">
+    <div class="admin-controls">
+      <label>
+        Szukaj deklaracji
+        <input id="adminSearch" type="search" placeholder="Szukaj po imieniu, emailu lub telefonie">
+      </label>
+      <label>
+        Status
+        <select id="adminFilterStatus">
+          <option value="all">Wszystkie statusy</option>
+          <option value="Nowa">Nowa</option>
+          <option value="Skontaktowano">Skontaktowano</option>
+        </select>
+      </label>
+      <form action="/auth/logout" method="post">
+        <button type="submit" class="btn btn-primary">Wyloguj</button>
+      </form>
+      <button type="button" class="btn btn-muted" id="clearDonations">Wyczysc wszystkie dane</button>
+    </div>
+
+    <table>
+      <thead>
+      <tr>
+        <th>Data</th>
+        <th>Dane darczyncy</th>
+        <th>Kwota</th>
+        <th>Platnosc</th>
+        <th>Status</th>
+        <th>Akcja</th>
+      </tr>
+      </thead>
+      <tbody id="adminTableBody">
+      <tr>
+        <td colspan="6">Brak deklaracji. Dodaj zgloszenie przez formularz na stronie "Wplaty i kontakt".</td>
+      </tr>
+      </tbody>
+    </table>
+  </section>
+</main>
+
+<footer>
+  <p>&copy; 2026 KGW Jezierzany. Wszelkie prawa zastrzezone.</p>
+</footer>
+</body>
+</html>
+

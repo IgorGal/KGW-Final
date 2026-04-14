@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Wplaty i kontakt | KGW Jezierzany</title>
+  <link rel="stylesheet" href="public/style.css">
+  <script src="index.js" defer></script>
+</head>
+<body>
+<header class="site-header">
+  <div class="brand">
+    <img src="public/zdjęcia/logo1.png" alt="Kontakt z KGW" class="logo">
+    <div>
+      <h1>KGW Jezierzany</h1>
+      <p>Wplaty, darowizny i kontakt z organizacja</p>
+    </div>
+  </div>
+</header>
+<nav>
+  <ul>
+    <li><a href="index.html">Strona glowna</a></li>
+    <li><a href="about.html">O nas</a></li>
+    <li><a href="recent.html">Aktualnosci</a></li>
+    <li><a href="work.html">Dzialalnosc</a></li>
+    <li><a class="active" href="contact.html">Wplaty i kontakt</a></li>
+    <li><a href="/login">Panel admina</a></li>
+  </ul>
+</nav>
+
+<section class="hero" style="--hero-image: url('public/zdjęcia/DSCF3659.jpg');">
+  <div class="panel">
+    <h1>Wspieraj nasze inicjatywy</h1>
+    <p>
+      Kazda wplata pomaga nam organizowac warsztaty, wydarzenia i akcje spoleczne dla mieszkancow.
+      Wypelnij formularz, a skontaktujemy sie z Toba w sprawie finalizacji darowizny.
+    </p>
+  </div>
+</section>
+
+<main class="main-container">
+  <section class="contact-grid">
+    <article class="contact-card">
+      <h2>Dane kontaktowe</h2>
+      <p><strong>Email:</strong> kontakt@kgwjezierzany.pl</p>
+      <p><strong>Telefon:</strong> +48 123 456 789</p>
+      <p><strong>Adres spotkan:</strong> Swietlica wiejska, Jezierzany 14</p>
+    </article>
+    <article class="contact-card">
+      <h2>Numer rachunku do wplat</h2>
+      <p><strong>Bank:</strong> Bank Spoldzielczy w Slawnie</p>
+      <p><strong>Nr konta:</strong> 12 8899 0001 2345 6789 1000 2000</p>
+      <p><strong>Nr telefonu do przelewu blik:</strong> +48 123 456 789</p>
+      <p class="form-help">W tytule przelewu wpisz: "Darowizna na cele statutowe KGW Jezierzany".</p>
+    </article>
+  </section>
+
+  <section class="donation-wrapper">
+    <h2>Formularz deklaracji wplaty</h2>
+    <form id="donationForm" novalidate>
+      <div class="donation-grid">
+        <div class="form-row">
+          <label for="fullName">Imie i nazwisko *</label>
+          <input id="fullName" name="fullName" type="text" autocomplete="name" required>
+          <p class="form-error" data-error-for="fullName"></p>
+        </div>
+
+        <div class="form-row">
+          <label for="email">Adres email *</label>
+          <input id="email" name="email" type="email" autocomplete="email" required>
+          <p class="form-error" data-error-for="email"></p>
+        </div>
+
+        <div class="form-row">
+          <label for="phone">Telefon kontaktowy</label>
+          <input id="phone" name="phone" type="tel" autocomplete="tel" placeholder="np. 600100200">
+          <p class="form-error" data-error-for="phone"></p>
+        </div>
+
+        <div class="form-row">
+          <label for="paymentMethod">Sposob platnosci *</label>
+          <select id="paymentMethod" name="paymentMethod" required>
+            <option value="">Wybierz opcje</option>
+            <option value="przelew">Przelew tradycyjny</option>
+            <option value="blik">BLIK</option>
+            <option value="gotowka">Gotowka podczas spotkania</option>
+          </select>
+          <p class="form-error" data-error-for="paymentMethod"></p>
+        </div>
+
+        <div class="form-row full">
+          <label>Wybierz szybka kwote</label>
+          <div class="amount-options" role="group" aria-label="Szybki wybor kwoty wplaty">
+            <label class="amount-chip"><input type="radio" name="quickAmount" value="20">20 zl</label>
+            <label class="amount-chip"><input type="radio" name="quickAmount" value="50">50 zl</label>
+            <label class="amount-chip"><input type="radio" name="quickAmount" value="100">100 zl</label>
+            <label class="amount-chip"><input type="radio" name="quickAmount" value="200">200 zl</label>
+          </div>
+        </div>
+
+        <div class="form-row full">
+          <label for="amount">Kwota deklarowanej wplaty (PLN) *</label>
+          <input id="amount" name="amount" type="number" min="10" step="1" placeholder="minimum 10" required>
+          <p class="form-help">Minimalna kwota deklaracji to 10 PLN.</p>
+          <p class="form-error" data-error-for="amount"></p>
+        </div>
+
+        <div class="form-row full">
+          <label for="note">Wiadomosc (opcjonalnie)</label>
+          <textarea id="note" name="note" rows="4" placeholder="Napisz, jesli chcesz przekazac dodatkowa informacje."></textarea>
+        </div>
+
+        <div class="form-row full">
+          <label class="amount-chip">
+            <input id="monthly" name="monthly" type="checkbox">
+            Chce wspierac KGW regularnie (co miesiac)
+          </label>
+        </div>
+
+        <div class="form-row full">
+          <label class="amount-chip">
+            <input id="consent" name="consent" type="checkbox" required>
+            Potwierdzam zgode na kontakt w sprawie darowizny *
+          </label>
+          <p class="form-error" data-error-for="consent"></p>
+        </div>
+
+        <div class="form-row full">
+          <button class="btn btn-primary" type="submit">Wyslij deklaracje</button>
+        </div>
+      </div>
+      <div id="donationMessage" class="form-message" hidden></div>
+    </form>
+  </section>
+</main>
+
+<footer>
+  <p>&copy; 2026 KGW Jezierzany. Wszelkie prawa zastrzezone.</p>
+</footer>
+</body>
+</html>
+
